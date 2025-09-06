@@ -1,10 +1,8 @@
 name: k8s-lint
 on:
   push:
-    branches:
-      - master
-      - main
-  pull_request:
+    tags:
+      - "v*"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,5 +22,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: adamkpn/dex-k8s-authenticator:${{ github.sha }}
+          tags: adamkpn/dex-k8s-authenticator:${{ github.ref_name }}
           platforms: linux/amd64,linux/arm64
